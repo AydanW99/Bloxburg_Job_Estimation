@@ -9,11 +9,13 @@ class Bloxburg():
         self.total_points = 0
         self.average_time = 0
         self.highest_level = 0
+        self.current_progress = 0
 
     def enter_stats(self):
         """This is where the user imports their stats in order for the formula to calculate"""
         self.current_level = int(input("What is your current level? "))
         self.highest_level = int(input("What level do you want to reach? "))
+        self.current_progress = int(input(f"What is your current progress at level {self.current_level} (put 0 if unsure)? "))
         for _ in range(1, self.current_level):
             self.new_points_needed = self.current_points_needed + self.previous_level * 2 + 1
             self.current_points_needed = self.new_points_needed
@@ -33,6 +35,7 @@ class Bloxburg():
             self.current_points_needed = self.new_points_needed
             self.previous_level += 1
 
+        self.total_points -= self.current_progress
         average_1 = self.average_time / 50
 
         time_required = average_1 * self.total_points
